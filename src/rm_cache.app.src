@@ -1,0 +1,14 @@
+{application, rm_cache,
+ [
+  {description, "An Erlang rm_cache library"},
+  {vsn, "1"},
+  {modules, [
+             rm_cache
+            ]},
+  {registered, []},
+  {applications, [
+                  kernel,
+                  stdlib
+                 ]},
+  {env, []}
+ ]}.
