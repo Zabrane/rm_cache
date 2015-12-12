@@ -1,7 +1,7 @@
 -module(rm_test_backend).
 -behaviour(gen_server).
 
--export([start/1, stop/1]).
+-export([start/1, start/2, stop/1]).
 -export([retrieve/2, dump_state/1]).
 -export([init/1, handle_call/3, handle_cast/2, handle_info/2,
          terminate/2, code_change/3]).
@@ -13,6 +13,9 @@
 
 start(DataStructures) ->
     gen_server:start(?MODULE, [DataStructures], []).
+start(Name, DataStructures) ->
+    catch stop(Name),
+    gen_server:start({local, Name}, ?MODULE, [DataStructures], []).
 
 stop(Pid) -> gen_server:call(Pid, stop).
 
